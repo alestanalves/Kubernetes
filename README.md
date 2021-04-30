@@ -25,4 +25,12 @@ Então o Kubernetes é um orquestrador de containers capaz de resolver todos ess
 
 ![image](https://user-images.githubusercontent.com/48387196/116601254-ac418000-a900-11eb-9bbf-62001c345858.png)
 
-os pods são os containers
+os pods são os containers, iguais os do docker e eu posso colocar dois container em um pod.
+
+### Criar nosso cluster virtualizado
+
+```
+minikube start --vm-driver=virtualbox
+```
+
+Assim estamos criando um cluster dentro da máquina virtual que o VB vai criar.
