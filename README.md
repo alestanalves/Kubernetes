@@ -85,6 +85,11 @@ Serve para a comunicação entre dois pods, sem ele os pods não conseguem se co
 
 ![image](https://user-images.githubusercontent.com/48387196/116743299-1c1e3c00-a9cf-11eb-803c-06db4ddd6177.png)
 
+Obter os valores de services:
+
+```
+kubectl get svc
+```
 
 **Coisas importantes que ele possui**
 
