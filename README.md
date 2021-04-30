@@ -65,3 +65,12 @@ Ver os pods de forma wide com todas as informações:
 ```
 kubectl get pods -o wide
 ```
+
+Deletar um pod 
+
+``` 
+kubectl delete pod <nomedopod>
+```
+```
+kubectl delete -f arquivo.yaml
+```
