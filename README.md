@@ -104,3 +104,8 @@ Abre a comunicação para o mundo
 
 ![image](https://user-images.githubusercontent.com/48387196/116749208-f85ef400-a9d6-11eb-8103-1ef81552bcaa.png)
 
+No linux precisamos utilizar o internalIP para acessar o local aonde se encontra a aplicacao no NodePort
+Como achar o internalIP:
+```
+kubectl get pods -o wide
+```
