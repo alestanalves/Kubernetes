@@ -34,3 +34,29 @@ minikube start --vm-driver=virtualbox
 ```
 
 Assim estamos criando um cluster dentro da máquina virtual que o VB vai criar.
+
+### Comands 
+
+Subir um pod com uma imagem 
+
+```
+kubectl run features --image=features
+```
+
+Ver se o pod já subiu
+
+```
+kubectl get pods 
+```
+
+Ver em tempo real
+
+```
+kubectl get pods --watch
+```
+
+Ver tudo que ocorreu até o pod ficar running
+
+```
+kubectl describe pod features
+```
