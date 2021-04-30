@@ -1,5 +1,4 @@
 # Kubernetes
-Kubernetes Course
 
 O kubernetes vem para solucionar o problema de ter muitos containers rodando em uma máquina qualquer ou seja uma hora isso vai ter um estouro de memoria e de processamento 
 
@@ -55,8 +54,14 @@ Ver em tempo real
 kubectl get pods --watch
 ```
 
-Ver tudo que ocorreu até o pod ficar running
+Ver tudo que ocorreu dentro do pod
 
 ```
 kubectl describe pod features
+```
+
+Ver os pods de forma wide com todas as informações:
+
+```
+kubectl get pods -o wide
 ```
