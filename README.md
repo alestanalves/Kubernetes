@@ -36,6 +36,8 @@ Assim estamos criando um cluster dentro da máquina virtual que o VB vai criar.
 
 ### Comands 
 
+![image](https://user-images.githubusercontent.com/48387196/116742918-81256200-a9ce-11eb-980a-3d9cdf899852.png)
+
 Subir um pod com uma imagem 
 
 ```
@@ -74,3 +76,31 @@ kubectl delete pod <nomedopod>
 ```
 kubectl delete -f arquivo.yaml
 ```
+
+## Services (SVC)
+
+![image](https://user-images.githubusercontent.com/48387196/116743021-ab771f80-a9ce-11eb-98fd-939a84e98db4.png)
+
+Serve para a comunicação entre dois pods, sem ele os pods não conseguem se comunicar.
+
+![image](https://user-images.githubusercontent.com/48387196/116743299-1c1e3c00-a9cf-11eb-803c-06db4ddd6177.png)
+
+
+**Coisas importantes que ele possui**
+
+- ClusterIP
+- NodePort
+- LoadBalancer
+
+### ClusterIP
+
+Serve para a comunicação de diferentes clusters
+
+![image](https://user-images.githubusercontent.com/48387196/116743408-4243dc00-a9cf-11eb-98e4-36f02dfc0a23.png)
+
+### NodePort
+
+Abre a comunicação para o mundo
+
+![image](https://user-images.githubusercontent.com/48387196/116749208-f85ef400-a9d6-11eb-8103-1ef81552bcaa.png)
+
