@@ -76,6 +76,10 @@ kubectl delete pod <nomedopod>
 ```
 kubectl delete -f arquivo.yaml
 ```
+Deletar todos os pods:
+```
+kubectl delete pods --all
+```
 
 ## Services (SVC)
 
