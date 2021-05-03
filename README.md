@@ -128,3 +128,35 @@ kubectl get pods -o wide
 ```
 kubectl exec -it database -- bash
 ```
+
+## ConfigMap
+
+![image](https://user-images.githubusercontent.com/48387196/116913497-ee7c0180-ac1f-11eb-815d-905ec5769204.png)
+
+Com o configmap conseguimos criar um arquivo de configuração de environments
+
+Criando um configmap:
+
+```
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: db-configmap
+data:
+    MYSQL_ROOT_PASSWORD: q1w2e3r4
+    MYSQL_DATABASE: empresa
+    MYSQL_PASSWORD: q1w2e3r4
+```
+```
+kubectl apply -f configmap-db.yaml
+```
+
+Ver a descrição do configmap e ver os configmaps
+
+```
+kubectl describe configmap configmap-db
+```
+```
+kubectl get configmap
+```
+
