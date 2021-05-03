@@ -1,5 +1,4 @@
 # Kubernetes
-Kubernetes Course
 
 O kubernetes vem para solucionar o problema de ter muitos containers rodando em uma máquina qualquer ou seja uma hora isso vai ter um estouro de memoria e de processamento 
 
@@ -37,6 +36,8 @@ Assim estamos criando um cluster dentro da máquina virtual que o VB vai criar.
 
 ### Comands 
 
+![image](https://user-images.githubusercontent.com/48387196/116742918-81256200-a9ce-11eb-980a-3d9cdf899852.png)
+
 Subir um pod com uma imagem 
 
 ```
@@ -55,8 +56,107 @@ Ver em tempo real
 kubectl get pods --watch
 ```
 
-Ver tudo que ocorreu até o pod ficar running
+Ver tudo que ocorreu dentro do pod
 
 ```
 kubectl describe pod features
 ```
+
+Ver os pods de forma wide com todas as informações:
+
+```
+kubectl get pods -o wide
+```
+
+Deletar um pod 
+
+``` 
+kubectl delete pod <nomedopod>
+```
+```
+kubectl delete -f arquivo.yaml
+```
+Deletar todos os pods:
+```
+kubectl delete pods --all
+```
+
+## Services (SVC)
+
+![image](https://user-images.githubusercontent.com/48387196/116743021-ab771f80-a9ce-11eb-98fd-939a84e98db4.png)
+
+Serve para a comunicação entre dois pods, sem ele os pods não conseguem se comunicar.
+
+![image](https://user-images.githubusercontent.com/48387196/116743299-1c1e3c00-a9cf-11eb-803c-06db4ddd6177.png)
+
+Obter os valores de services:
+
+```
+kubectl get svc
+```
+
+**Coisas importantes que ele possui**
+
+- ClusterIP
+- NodePort
+- LoadBalancer
+
+### ClusterIP
+
+Serve para a comunicação de diferentes clusters
+
+![image](https://user-images.githubusercontent.com/48387196/116743408-4243dc00-a9cf-11eb-98e4-36f02dfc0a23.png)
+
+### NodePort
+
+Abre a comunicação para o mundo
+
+![image](https://user-images.githubusercontent.com/48387196/116749208-f85ef400-a9d6-11eb-8103-1ef81552bcaa.png)
+
+No linux precisamos utilizar o internalIP para acessar o local aonde se encontra a aplicacao no NodePort
+Como achar o internalIP:
+```
+kubectl get pods -o wide
+```
+
+### LoadBalancer
+
+![image](https://user-images.githubusercontent.com/48387196/116751821-fa2ab680-a9da-11eb-8468-1c09ec30ec4f.png)
+
+### Acessando um POD
+
+```
+kubectl exec -it database -- bash
+```
+
+## ConfigMap
+
+![image](https://user-images.githubusercontent.com/48387196/116913497-ee7c0180-ac1f-11eb-815d-905ec5769204.png)
+
+Com o configmap conseguimos criar um arquivo de configuração de environments
+
+Criando um configmap:
+
+```
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: db-configmap
+data:
+    MYSQL_ROOT_PASSWORD: q1w2e3r4
+    MYSQL_DATABASE: empresa
+    MYSQL_PASSWORD: q1w2e3r4
+```
+```
+kubectl apply -f configmap-db.yaml
+```
+
+Ver a descrição do configmap e ver os configmaps
+
+```
+kubectl describe configmap configmap-db
+```
+```
+kubectl get configmap
+```
+
