@@ -123,3 +123,8 @@ kubectl get pods -o wide
 
 ![image](https://user-images.githubusercontent.com/48387196/116751821-fa2ab680-a9da-11eb-8468-1c09ec30ec4f.png)
 
+### Acessando um POD
+
+```
+kubectl exec -it database -- bash
+```
