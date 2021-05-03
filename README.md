@@ -160,3 +160,17 @@ kubectl describe configmap configmap-db
 kubectl get configmap
 ```
 
+## Docker login on Kubernetes
+
+Criar secret key com base no arquivo /root/docker/.config.json 
+
+```
+kubectl create secret docker-registry regcred --docker-server=<your-registry-server> --docker-username=<your-name> --docker-password=<your-pword> --docker-email=<your-email>
+```
+Pegar o arquivo .yaml criado
+```
+kubectl get secret regcred --output=yaml
+```
+
+
+
