@@ -195,3 +195,13 @@ Com o comando acima conseguimos ver um historico dos deploy.
 kubectl annotate deployment nginx-deployment kubernetes.io/change-cause="Definindo a imagem com a versão latest" 
 ```
 Com este comando anotamos um commit no deployment de uma aplicação e conseguimos olhar cada anotação com o `kubectl rollout history deployment <nome do deploy>`
+
+***Como dou um rollback na versão que eu quero?***
+
+```
+kubectl rollout undo deployment nginx-deployment --to-revision=2
+```
+
+Então, quando utilizamos nossos Deployments, o que conseguimos fazer? Conseguimos, simplesmente, ter uma camada extra acima de um ReplicaSet, que consegue gerenciar as imagens, todo o versionamento do que estamos definindo, controle de atualização em cima das nossas imagens e Pods. Que legal, não é verdade?
+
+**Então, no fim das contas, a boa prática, o mais comum que vocês irão ver quando vocês forem criar Pods é criar eles através de Deployments, que eles já vão permitir todo esse controle de versionamento e também os benefícios de um ReplicaSet.**
