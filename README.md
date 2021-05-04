@@ -185,3 +185,13 @@ Definindo um replicaset conseguimos não parar a aplicação nunca, pois criamos
 ![Screenshot from 2021-05-04 15-07-29](https://user-images.githubusercontent.com/48387196/117049431-7b8b8d00-acea-11eb-92ab-634325077d42.png)
 
 Os deployments já criam automaticamente os ReplicaSet 
+Na pratica os ReplicaSet e os deployments são diferentes pois com os Deployments conseguimos colocar mais configurações de fluxo.
+
+```
+kubectl rollout history deployment nginx-deployment
+```
+Com o comando acima conseguimos ver um historico dos deploy.
+```
+kubectl annotate deployment nginx-deployment kubernetes.io/change-cause="Definindo a imagem com a versão latest" 
+```
+Com este comando anotamos um commit no deployment de uma aplicação e conseguimos olhar cada anotação com o `kubectl rollout history deployment <nome do deploy>`
