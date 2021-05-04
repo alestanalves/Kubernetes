@@ -172,5 +172,11 @@ Pegar o arquivo .yaml criado
 kubectl get secret regcred --output=yaml
 ```
 
+## ReplicaSet
+
+Definindo um replicaset conseguimos não parar a aplicação nunca, pois criamos replicas iguais dos pods que quisermos.
+
+![image](https://user-images.githubusercontent.com/48387196/117041240-272fdf80-ace1-11eb-85af-cc66f18dcd7d.png)
+
 
 
