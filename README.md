@@ -171,6 +171,12 @@ Pegar o arquivo .yaml criado
 ```
 kubectl get secret regcred --output=yaml
 ```
+Colocar dentro de spec as infos de configs
+
+```
+imagePullSecrets:
+- name: regcred
+ ```
 
 ## ReplicaSet
 
