@@ -178,5 +178,5 @@ Definindo um replicaset conseguimos não parar a aplicação nunca, pois criamos
 
 ![image](https://user-images.githubusercontent.com/48387196/117041240-272fdf80-ace1-11eb-85af-cc66f18dcd7d.png)
 
-
+![Screenshot from 2021-05-04 14-44-47](https://user-images.githubusercontent.com/48387196/117046693-5cd7c700-ace7-11eb-95bc-7e74518eb744.png)
 
