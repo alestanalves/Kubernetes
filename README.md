@@ -180,3 +180,8 @@ Definindo um replicaset conseguimos não parar a aplicação nunca, pois criamos
 
 ![Screenshot from 2021-05-04 14-44-47](https://user-images.githubusercontent.com/48387196/117046693-5cd7c700-ace7-11eb-95bc-7e74518eb744.png)
 
+## Deployment
+
+![Screenshot from 2021-05-04 15-07-29](https://user-images.githubusercontent.com/48387196/117049431-7b8b8d00-acea-11eb-92ab-634325077d42.png)
+
+Os deployments já criam automaticamente os ReplicaSet 
