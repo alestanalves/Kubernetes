@@ -251,3 +251,38 @@ spec:
   ports:
     - containerPort: 80
 ```
+
+## PersistentVolume 
+
+Pode ser criado dentro do GCP ou AWS e mesmo se o pod cair e for deletado o PV continua ativo para o mesmo pod após ele ser criado novamente.
+
+```
+apiVersion: v1
+kind: PersistVolume
+metadata:
+    name: pv-1
+spec:
+    capacity:
+        storage: 10Gi
+    accessModes:
+        - ReadWriteOnce
+    gcePersistentDisk:
+        pdName: pv-disk
+    storageClassName: standard
+``` 
+
+## Persistent Volume Claim
+
+```
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: pvc-1
+spec:
+    accessModes:
+        - ReadWriteOnde
+    resources:
+        requests:
+            storage: 10Gi
+    storageClassName: standard
+```
