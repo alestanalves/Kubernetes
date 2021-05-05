@@ -211,3 +211,43 @@ kubectl rollout undo deployment nginx-deployment --to-revision=2
 Então, quando utilizamos nossos Deployments, o que conseguimos fazer? Conseguimos, simplesmente, ter uma camada extra acima de um ReplicaSet, que consegue gerenciar as imagens, todo o versionamento do que estamos definindo, controle de atualização em cima das nossas imagens e Pods. Que legal, não é verdade?
 
 **Então, no fim das contas, a boa prática, o mais comum que vocês irão ver quando vocês forem criar Pods é criar eles através de Deployments, que eles já vão permitir todo esse controle de versionamento e também os benefícios de um ReplicaSet.**
+
+## Persistindo dados com volumes
+
+Criando um pod de volume :) o volume é separado dos containers, se algum container cair o volume continua, só se todos cairem ele é apagado.
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-volume
+  labels:
+    app: zdslabs
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx:latest
+      volumeMounts:
+        - mountPath: /volumedocontainer
+          name: primeiro-volume
+      resources:
+        limits:
+          memory: "128Mi"
+          cpu: "500m"
+    - name: nginx-container
+      image: nginx:stable
+      volumeMounts:
+        - mountPath: /volumedocontainer
+          name: primeiro-volume
+      resources:
+        limits:
+          memory: "128Mi"
+          cpu: "500m"
+  volumes:
+    - name: primeiro-volume
+      hostPath:
+        path: /home/volume-primeiro
+        type: DirectoryOrCreate
+  ports:
+    - containerPort: 80
+```
