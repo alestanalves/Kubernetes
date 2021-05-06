@@ -255,6 +255,7 @@ spec:
 ## PersistentVolume 
 
 Pode ser criado dentro do GCP ou AWS e mesmo se o pod cair e for deletado o PV continua ativo para o mesmo pod após ele ser criado novamente.
+Resource independente do Pod responsavel por abstrair como o cloud cloud provider armazena os dados
 
 ```
 apiVersion: v1
@@ -273,6 +274,7 @@ spec:
 
 ## Persistent Volume Claim
 
+Serve como passaporte para o Pod acessar o PV
 ```
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -285,4 +287,21 @@ spec:
         requests:
             storage: 10Gi
     storageClassName: standard
+```
+
+## Storage Classes
+
+Introduction
+
+A StorageClass provides a way for administrators to describe the "classes" of storage they offer. Different classes might map to quality-of-service levels, or to backup policies, or to arbitrary policies determined by the cluster administrators. Kubernetes itself is unopinionated about what classes represent. This concept is sometimes called "profiles" in other storage systems.
+
+**Local**
+
+```
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: local-storage
+provisioner: kubernetes.io/no-provisioner
+volumeBindingMode: WaitForFirstConsumer
 ```
