@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: zdslabs
+  labels:
+    zdslabs: zdslabs
+spec:
+  containers:
+  - name: zdslabs-container
+    image: zdsdocker/zds-labs_web:1.2
+    volumeMounts:
+      - mountPath: /volume
+  - name: zdslabs-container1.1
+    image: zdsdocker/zds-labs_web:1.1
+    volumeMounts:
+      - mountPath: /volume
+    ports:
+      - containerPort: 8000
+  imagePullSecrets:
+  - name: regcred
+  volume:
+    - name: volume-1
+      hostPath:
+        path: /zdslabs/volume
+        type: Directory
