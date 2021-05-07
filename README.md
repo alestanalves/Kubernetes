@@ -305,3 +305,23 @@ metadata:
 provisioner: kubernetes.io/no-provisioner
 volumeBindingMode: WaitForFirstConsumer
 ```
+
+Depois crie um PVC
+
+```
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: pvc-2
+spec:
+    accessModes:
+        - ReadWriteOnde
+    resources:
+        requests:
+            storage: 10Gi
+    storageClassName: slow
+```
+
+## Stateful Set
+
+Isso significa que quando um Pod reinicia ou falha por algum motivo dentro de um Stateful Set e volta a execução, o arquivo é mantido porque ele vai fazer a mágica acontecer.
