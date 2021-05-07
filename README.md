@@ -160,3 +160,168 @@ kubectl describe configmap configmap-db
 kubectl get configmap
 ```
 
+## Docker login on Kubernetes
+
+Criar secret key com base no arquivo /root/docker/.config.json 
+
+```
+kubectl create secret docker-registry regcred --docker-server=<your-registry-server> --docker-username=<your-name> --docker-password=<your-pword> --docker-email=<your-email>
+```
+Pegar o arquivo .yaml criado
+```
+kubectl get secret regcred --output=yaml
+```
+Colocar dentro de spec as infos de configs
+
+```
+imagePullSecrets:
+- name: regcred
+ ```
+
+## ReplicaSet
+
+Definindo um replicaset conseguimos não parar a aplicação nunca, pois criamos replicas iguais dos pods que quisermos.
+
+![image](https://user-images.githubusercontent.com/48387196/117041240-272fdf80-ace1-11eb-85af-cc66f18dcd7d.png)
+
+![Screenshot from 2021-05-04 14-44-47](https://user-images.githubusercontent.com/48387196/117046693-5cd7c700-ace7-11eb-95bc-7e74518eb744.png)
+
+## Deployment
+
+![Screenshot from 2021-05-04 15-07-29](https://user-images.githubusercontent.com/48387196/117049431-7b8b8d00-acea-11eb-92ab-634325077d42.png)
+
+Os deployments já criam automaticamente os ReplicaSet 
+Na pratica os ReplicaSet e os deployments são diferentes pois com os Deployments conseguimos colocar mais configurações de fluxo.
+
+```
+kubectl rollout history deployment nginx-deployment
+```
+Com o comando acima conseguimos ver um historico dos deploy.
+```
+kubectl annotate deployment nginx-deployment kubernetes.io/change-cause="Definindo a imagem com a versão latest" 
+```
+Com este comando anotamos um commit no deployment de uma aplicação e conseguimos olhar cada anotação com o `kubectl rollout history deployment <nome do deploy>`
+
+***Como dou um rollback na versão que eu quero?***
+
+```
+kubectl rollout undo deployment nginx-deployment --to-revision=2
+```
+
+Então, quando utilizamos nossos Deployments, o que conseguimos fazer? Conseguimos, simplesmente, ter uma camada extra acima de um ReplicaSet, que consegue gerenciar as imagens, todo o versionamento do que estamos definindo, controle de atualização em cima das nossas imagens e Pods. Que legal, não é verdade?
+
+**Então, no fim das contas, a boa prática, o mais comum que vocês irão ver quando vocês forem criar Pods é criar eles através de Deployments, que eles já vão permitir todo esse controle de versionamento e também os benefícios de um ReplicaSet.**
+
+## Persistindo dados com volumes
+
+Criando um pod de volume :) o volume é separado dos containers, se algum container cair o volume continua, só se todos cairem ele é apagado.
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-volume
+  labels:
+    app: zdslabs
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx:latest
+      volumeMounts:
+        - mountPath: /volumedocontainer
+          name: primeiro-volume
+      resources:
+        limits:
+          memory: "128Mi"
+          cpu: "500m"
+    - name: nginx-container
+      image: nginx:stable
+      volumeMounts:
+        - mountPath: /volumedocontainer
+          name: primeiro-volume
+      resources:
+        limits:
+          memory: "128Mi"
+          cpu: "500m"
+  volumes:
+    - name: primeiro-volume
+      hostPath:
+        path: /home/volume-primeiro
+        type: DirectoryOrCreate
+  ports:
+    - containerPort: 80
+```
+
+## PersistentVolume 
+
+Pode ser criado dentro do GCP ou AWS e mesmo se o pod cair e for deletado o PV continua ativo para o mesmo pod após ele ser criado novamente.
+Resource independente do Pod responsavel por abstrair como o cloud cloud provider armazena os dados
+
+```
+apiVersion: v1
+kind: PersistVolume
+metadata:
+    name: pv-1
+spec:
+    capacity:
+        storage: 10Gi
+    accessModes:
+        - ReadWriteOnce
+    gcePersistentDisk:
+        pdName: pv-disk
+    storageClassName: standard
+``` 
+
+## Persistent Volume Claim
+
+Serve como passaporte para o Pod acessar o PV
+```
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: pvc-1
+spec:
+    accessModes:
+        - ReadWriteOnde
+    resources:
+        requests:
+            storage: 10Gi
+    storageClassName: standard
+```
+
+## Storage Classes
+
+Introduction
+
+A StorageClass provides a way for administrators to describe the "classes" of storage they offer. Different classes might map to quality-of-service levels, or to backup policies, or to arbitrary policies determined by the cluster administrators. Kubernetes itself is unopinionated about what classes represent. This concept is sometimes called "profiles" in other storage systems.
+
+**Local**
+
+```
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: local-storage
+provisioner: kubernetes.io/no-provisioner
+volumeBindingMode: WaitForFirstConsumer
+```
+
+Depois crie um PVC
+
+```
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: pvc-2
+spec:
+    accessModes:
+        - ReadWriteOnde
+    resources:
+        requests:
+            storage: 10Gi
+    storageClassName: slow
+```
+
+## Stateful Set
+
+Isso significa que quando um Pod reinicia ou falha por algum motivo dentro de um Stateful Set e volta a execução, o arquivo é mantido porque ele vai fazer a mágica acontecer.
