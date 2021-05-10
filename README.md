@@ -326,3 +326,5 @@ spec:
 
 Isso significa que quando um Pod reinicia ou falha por algum motivo dentro de um Stateful Set e volta a execução, o arquivo é mantido porque ele vai fazer a mágica acontecer.
 
+
+
