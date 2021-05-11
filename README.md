@@ -326,5 +326,19 @@ spec:
 
 Isso significa que quando um Pod reinicia ou falha por algum motivo dentro de um Stateful Set e volta a execução, o arquivo é mantido porque ele vai fazer a mágica acontecer.
 
+## Iniciando cockpit on Ubuntu Server
 
+```
+apt get install cockpit
+apt get install cockpit-machines
+```
 
+**Iniciando cockpit**
+
+```
+hostname -I
+```
+
+```
+entrar em  -> hostname:9090
+```
