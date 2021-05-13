@@ -399,6 +399,7 @@ https://www.yugabyte.com/
 
 # Airflow
 
-user
+echo User: user
 
-password 8IrGdI06L0
+echo Password: $AIRFLOW_PASSWORD
+
