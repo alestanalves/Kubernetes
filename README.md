@@ -396,3 +396,9 @@ https://min.io/
 The Leading High-Performance Distributed SQL Database
 
 https://www.yugabyte.com/
+
+# Airflow
+
+user
+
+password 8IrGdI06L0
