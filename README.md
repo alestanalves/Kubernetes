@@ -379,3 +379,20 @@ microk8s dashboard-proxy
 Start and stop Kubernetes to save battery
 Kubernetes is a collection of system services that talk to each other all the time. If you don’t need them running in the background then you will save battery by stopping them. ```microk8s start``` and ```microk8s stop``` will do the work for you.
 
+#artifact hub
+
+Find, install and publish Kubernetes package
+
+https://artifacthub.io/
+
+# minio
+
+Object Storage for the Era of the Hybrid Cloud
+
+https://min.io/
+
+#yugabyte DB
+
+The Leading High-Performance Distributed SQL Database
+
+https://www.yugabyte.com/
