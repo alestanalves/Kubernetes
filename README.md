@@ -399,7 +399,15 @@ https://www.yugabyte.com/
 
 # Airflow
 
-echo User: user
+**Login**
 
-echo Password: $AIRFLOW_PASSWORD
+1. Get the Airflow URL by running:
+
+  echo URL  : http://127.0.0.1:8080
+  kubectl port-forward --namespace default svc/airflow-bitnami 8080:8080
+
+2. Get your Airflow login credentials by running:
+  export AIRFLOW_PASSWORD=$(kubectl get secret --namespace "default" airflow-bitnami -o jsonpath="{.data.airflow-password}" | base64 --decode)
+  echo User:     user
+  echo Password: $AIRFLOW_PASSWORD
 
