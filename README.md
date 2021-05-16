@@ -410,3 +410,4 @@ https://www.yugabyte.com/
   export AIRFLOW_PASSWORD=$(kubectl get secret --namespace "default" airflow-bitnami -o jsonpath="{.data.airflow-password}" | base64 --decode)
   echo User:     user
   echo Password: $AIRFLOW_PASSWORD
+
