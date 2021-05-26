@@ -415,6 +415,7 @@ https://www.yugabyte.com/
   
 ![Z-Kubernetes](https://user-images.githubusercontent.com/48387196/119710400-b047bb80-be34-11eb-9fff-3fab333cd5f1.png)
   
-![zkubernetes](https://user-images.githubusercontent.com/48387196/119710580-e2f1b400-be34-11eb-8fb6-db1abf830c0d.png)
+![zkubernetes](https://user-images.githubusercontent.com/48387196/119710787-28ae7c80-be35-11eb-8f3d-7c01159d0292.png)
+
 
 
