@@ -410,4 +410,6 @@ https://www.yugabyte.com/
   export AIRFLOW_PASSWORD=$(kubectl get secret --namespace "default" airflow-bitnami -o jsonpath="{.data.airflow-password}" | base64 --decode)
   echo User:     user
   echo Password: $AIRFLOW_PASSWORD
+  
+![Z-Kubernetes](https://user-images.githubusercontent.com/48387196/119710400-b047bb80-be34-11eb-9fff-3fab333cd5f1.png)
 
