@@ -411,5 +411,10 @@ https://www.yugabyte.com/
   echo User:     user
   echo Password: $AIRFLOW_PASSWORD
   
+# Arquitetura
+  
 ![Z-Kubernetes](https://user-images.githubusercontent.com/48387196/119710400-b047bb80-be34-11eb-9fff-3fab333cd5f1.png)
+  
+![zkubernetes](https://user-images.githubusercontent.com/48387196/119710580-e2f1b400-be34-11eb-8fb6-db1abf830c0d.png)
+
 
